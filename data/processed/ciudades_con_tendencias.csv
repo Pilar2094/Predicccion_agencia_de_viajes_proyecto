@@ -1,0 +1,118 @@
+Ciudad,Latitud,Longitud,Temperatura,Humedad,Descripcion,popularidad_trends
+Tokyo,35.6762,139.6503,17.3,63,Parcialmente nublado,6.377358490566038
+París,48.8566,2.3522,16.4,63,Cielo cubierto,33.943396226415096
+Barcelona,41.3851,2.1734,18.3,73,Soleado,78.13207547169812
+Roma,41.9028,12.4964,21.0,60,Parcialmente nublado,51.43396226415094
+Madrid,40.4168,-3.7038,24.1,41,Soleado,83.28301886792453
+Amsterdam,52.3667,4.9,13.3,67,Soleado,63.0377358490566
+Lisboa,38.7223,-9.1393,19.3,68,Soleado,
+Estambul,41.0082,28.9784,14.3,72,Soleado,
+Buenos Aires,-34.6037,-58.3816,21.2,78,Soleado,
+Seúl,37.5665,126.978,10.0,29,Despejado,1.8867924528301887
+Cancún,21.1619,-86.8515,28.4,62,Cielo cubierto,44.75471698113208
+Honolulu,21.3069,-157.8583,23.2,78,Parcialmente nublado,4.150943396226415
+Río de Janeiro,-22.9068,-43.1729,25.1,89,Ligeras lluvias,4.943396226415095
+Sydney,-33.8688,151.2093,19.2,88,Parcialmente nublado,4.377358490566038
+Bali,-8.3405,115.0917,29.1,89,Parcialmente nublado,58.320754716981135
+Dubai,25.2048,55.2708,30.3,66,Despejado,70.13207547169812
+Marrakech,31.6295,-7.9811,21.1,69,Parcialmente nublado,44.056603773584904
+Lima,-12.0464,-77.0428,20.1,78,Soleado,66.05660377358491
+Cartagena,10.3997,-75.5144,30.1,70,Parcialmente nublado,70.66037735849056
+Mykonos,37.4454,25.3265,20.2,49,Soleado,2.660377358490566
+Nueva York,40.7128,-74.006,18.9,52,Soleado,66.73584905660377
+Montreal,45.5017,-73.5673,12.2,58,Soleado,3.6226415094339623
+Vancouver,49.2827,-123.1207,11.2,82,Soleado,4.867924528301887
+Praga,50.0755,14.4378,9.2,93,Ligeras lluvias,59.283018867924525
+Londres,51.5074,0.1278,12.3,77,Parcialmente nublado,65.77358490566037
+Berlín,52.52,13.405,17.3,29,Soleado,3.150943396226415
+San Francisco,37.7749,-122.4194,11.1,77,Parcialmente nublado,19.77358490566038
+Ciudad de México,19.4326,-99.1332,16.7,74,Soleado,55.45283018867924
+Zurich,47.3769,8.5417,12.2,82,Parcialmente nublado,7.2075471698113205
+Moscú,55.7558,37.6173,13.3,58,Parcialmente nublado,4.0754716981132075
+Estocolmo,59.3293,18.0686,8.0,34,Parcialmente nublado,6.981132075471698
+Helsinki,60.1699,24.9384,7.2,36,Parcialmente nublado,3.981132075471698
+Oslo,59.9139,10.7522,10.1,32,Soleado,4.849056603773585
+Copenhague,55.6761,12.5683,11.0,62,Parcialmente nublado,6.245283018867925
+Reykjavik,64.1355,-21.8954,12.3,71,Parcialmente nublado,
+Ginebra,46.2044,6.1432,15.4,55,Lluvia  moderada a intervalos,
+Kitzbühel,47.4467,12.3917,9.0,78,Ligeras precipitaciones,
+Quebec,46.8139,-71.208,9.6,68,Parcialmente nublado,2.4716981132075473
+Los Angeles,34.0522,-118.2437,14.4,70,Cielo cubierto,
+Chicago,41.8781,-87.6298,12.2,66,Parcialmente nublado,57.320754716981135
+Houston,29.7604,-95.3698,24.3,94,Parcialmente nublado,27.943396226415093
+Miami,25.7617,-80.1918,27.2,54,Cielo cubierto,73.60377358490567
+Vienna,48.2082,16.3738,11.3,87,Ligeras lluvias,2.207547169811321
+Budapest,47.4979,19.0402,19.0,68,Parcialmente nublado,52.0
+Warsaw,52.237,21.0175,16.1,39,Soleado,0.0
+Dublin,53.3498,-6.2603,11.0,94,Parcialmente nublado,27.67924528301887
+Stockholm,59.3293,18.0686,8.0,34,Parcialmente nublado,0.0
+Helsinki,60.1699,24.9384,7.2,36,Parcialmente nublado,3.981132075471698
+Zurich,47.3769,8.5417,12.2,82,Parcialmente nublado,7.2075471698113205
+Geneva,46.2044,6.1432,15.4,55,Lluvia  moderada a intervalos,0.0
+Brussels,50.8467,4.3525,15.1,59,Nublado,3.2452830188679247
+Moscow,55.7558,37.6173,13.3,58,Parcialmente nublado,1.8867924528301887
+Istanbul,41.0082,28.9784,14.3,72,Soleado,2.2452830188679247
+Dubai,25.2048,55.2708,30.3,66,Despejado,70.13207547169812
+Osaka,34.6937,135.5023,12.1,41,Despejado,3.358490566037736
+Seoul,37.5665,126.978,10.0,29,Despejado,3.6792452830188678
+Beijing,39.9042,116.4074,15.1,48,Despejado,2.3773584905660377
+Shanghai,31.2304,121.4737,15.3,39,Cielo cubierto,3.452830188679245
+Bangkok,13.7563,100.5018,32.1,63,Despejado,25.0188679245283
+Singapore,1.3521,103.8198,27.2,89,Parcialmente nublado,3.509433962264151
+Kuala Lumpur,3.139,101.6869,27.2,84,Lluvia  moderada a intervalos,5.30188679245283
+Jakarta,-6.2088,106.8456,28.1,84,Ligeras precipitaciones,0.0
+Manila,14.5995,120.9842,30.2,70,Despejado,2.3962264150943398
+Ho Chi Minh City,10.8231,106.6297,30.2,79,Despejado,0.0
+Hanoi,21.0278,105.8342,27.2,74,Parcialmente nublado,2.2641509433962264
+New Delhi,28.6139,77.209,35.3,14,Neblina,0.0
+Mumbai,19.076,72.8777,28.8,71,Despejado,1.8867924528301887
+Bangalore,12.9716,77.5946,30.2,46,Despejado,0.0
+Chennai,13.0827,80.2707,31.0,79,Despejado,0.0
+Hyderabad,17.385,78.4867,29.4,48,Neblina,0.0
+Cape Town,-33.9249,18.4241,20.1,64,Parcialmente nublado,0.0
+Johannesburg,-26.2041,28.0473,21.2,40,Soleado,0.0
+Cairo,30.0444,31.2357,26.1,37,Soleado,10.79245283018868
+Casablanca,33.5731,-7.5898,20.2,73,Parcialmente nublado,4.150943396226415
+Rio de Janeiro,-22.9068,-43.1729,25.1,89,Ligeras lluvias,55.37735849056604
+São Paulo,-23.5505,-46.6333,20.4,88,Neblina,23.32075471698113
+Santiago,-33.4489,-70.6693,13.3,77,Ligeras lluvias,72.0754716981132
+Bogotá,4.711,-74.0721,17.0,88,Parcialmente nublado,58.528301886792455
+Medellín,6.2442,-75.5812,16.4,88,Neblina,34.83018867924528
+Caracas,10.4806,-66.9036,23.8,78,Llovizna,52.41509433962264
+Quito,-0.1807,-78.4678,16.0,66,Lluvia  moderada a intervalos,67.11320754716981
+Panama City,8.5379,-80.7821,28.9,55,Soleado,1.8867924528301887
+Mexico City,19.4326,-99.1332,16.7,74,Soleado,3.452830188679245
+Guadalajara,20.6597,-103.3496,15.7,35,Soleado,63.62264150943396
+Punta Cana,18.5643,-68.4053,29.1,62,Parcialmente nublado,61.679245283018865
+San Juan,18.4655,-66.1057,28.3,66,Parcialmente nublado,33.283018867924525
+Toronto,43.6532,-79.3832,10.4,76,Parcialmente nublado,20.433962264150942
+Calgary,51.0486,-114.0708,5.2,52,Soleado,1.8867924528301887
+Ottawa,45.4215,-75.6972,11.1,62,Parcialmente nublado,
+Sydney,-33.8688,151.2093,19.2,88,Parcialmente nublado,4.377358490566038
+Melbourne,-37.8136,144.9631,15.2,94,Ligeras lluvias,3.3207547169811322
+Brisbane,-27.4698,153.0251,19.0,100,Lluvia  moderada a intervalos,0.0
+Perth,-31.9505,115.8605,9.1,81,Despejado,
+Auckland,-36.8485,174.7633,17.3,83,Lluvia  moderada a intervalos,
+Wellington,-41.2865,174.7762,13.4,72,Parcialmente nublado,
+Anchorage,61.2181,-149.9003,0.3,75,Parcialmente nublado,0.0
+Tallinn,59.437,24.7536,5.1,61,Parcialmente nublado,0.0
+Riga,56.949,24.1052,7.3,57,Soleado,3.452830188679245
+Vilnius,54.6872,25.2797,12.3,32,Parcialmente nublado,1.8867924528301887
+Luxembourg,49.8153,6.1296,14.3,63,Parcialmente nublado,1.8867924528301887
+Monaco,43.7384,7.4246,21.2,38,Soleado,3.0
+San Marino,43.9424,12.4578,14.9,81,Lluvia  moderada a intervalos,3.5849056603773586
+Andorra la Vella,42.5078,1.5211,18.3,38,Lluvia  moderada a intervalos,0.0
+Valletta,35.8997,14.5141,19.2,64,Soleado,1.8867924528301887
+Doha,25.2854,51.531,30.2,59,Cielo cubierto,4.377358490566038
+Kuwait City,29.3759,47.9774,38.6,16,Soleado,1.8867924528301887
+Manama,26.2285,50.586,30.4,49,Parcialmente nublado,0.0
+Amman,31.9539,35.9106,23.2,29,Neblina,0.0
+Jerusalén,31.7683,35.2137,22.3,50,Soleado,3.660377358490566
+Teherán,35.6892,51.389,29.0,15,Intervalos de lluvias ligeras con tomenta en la región,0.0
+Bagdad,33.3157,44.3661,35.3,20,Parcialmente nublado,1.8867924528301887
+Beirut,33.8938,35.5018,22.0,65,Parcialmente nublado,1.8867924528301887
+Túnez,36.8065,10.1815,24.2,36,Parcialmente nublado,3.7547169811320753
+Argel,36.7539,3.0589,23.3,53,Parcialmente nublado,1.8867924528301887
+Nairobi,-1.2921,36.8219,24.0,44,Parcialmente nublado,1.8867924528301887
+Adís Abeba,9.0306,38.7578,25.0,24,Parcialmente nublado,0.0
+Accra,5.6037,-0.187,32.1,67,Soleado,0.0
