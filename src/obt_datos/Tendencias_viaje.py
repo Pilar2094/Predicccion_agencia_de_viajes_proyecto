@@ -3,7 +3,7 @@ import pandas as pd
 from time import sleep
 
 # Cargar tus ciudades
-df_ciudades = pd.read_csv("../Modelo_recomendaci-n_Agencia_de_viajes/data/processed/ciudades_con_clima.csv")
+df_ciudades = pd.read_csv("../Predicccion_agencia_de_viajes_proyecto/data/processed/ciudades_con_eventos.csv")
 
 # Conectar a Google Trends
 pytrends = TrendReq(hl='es-ES', tz=360)
