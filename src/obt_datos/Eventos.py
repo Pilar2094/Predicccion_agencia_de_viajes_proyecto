@@ -21,7 +21,12 @@ num_eventos = []
 tipo_evento = []
 
 # URL base
-url = "https://www.eventbriteapi.com/v3/events/search/"
+url = "https://www.eventbriteapi.com/v3/users/me/?token=GXYZI5QMJASZFWC2L4C5"
+
+# HTTP 
+# GET /v3/users/meHTTP 1.1
+# Host: www.eventbriteapi.com
+# Authorization: Bearer GXYZI5QMJASZFWC2L4C5
 
 # Recorrer cada fila
 for idx, row in df_ciudades.iterrows():
