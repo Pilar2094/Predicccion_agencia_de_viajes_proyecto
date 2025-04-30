@@ -6,7 +6,7 @@ import os
 from datetime import datetime, timedelta
 
 # Leer dataset de ciudades
-df_ciudades = pd.read_csv("../Predicccion_agencia_de_viajes_proyecto/data/processed/ciudades_con_clima.csv")
+df_ciudades = pd.read_csv("../Predicccion_agencia_de_viajes_proyecto/data/processed/Datos_climaticos_completos_hist.csv")
 
 # Cargar variables de entorno
 load_dotenv()
