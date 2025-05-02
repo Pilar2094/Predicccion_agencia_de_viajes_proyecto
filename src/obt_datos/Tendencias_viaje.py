@@ -1,37 +1,43 @@
-from pytrends.request import TrendReq
+import praw
 import pandas as pd
 from time import sleep
+from dotenv import load_dotenv
+import os
 
-# Cargar tus ciudades
+# Cargar variables de entorno
+load_dotenv()
+REDDIT_CLIENT_ID = os.getenv("REDDIT_CLIENT_ID")
+REDDIT_SECRET = os.getenv("REDDIT_SECRET")
+REDDIT_USER_AGENT = os.getenv("REDDIT_USER_AGENT", "ciudades-trends-script")
+
+# Autenticación
+reddit = praw.Reddit(
+    client_id=REDDIT_CLIENT_ID,
+    client_secret=REDDIT_SECRET,
+    user_agent=REDDIT_USER_AGENT
+)
+
+# Leer dataset
 df_ciudades = pd.read_csv("../Predicccion_agencia_de_viajes_proyecto/data/processed/ciudades_con_eventos.csv")
+popularidad_reddit = []
 
-# Conectar a Google Trends
-pytrends = TrendReq(hl='es-ES', tz=360)
-
-popularidad = []
-
+# Buscar menciones por ciudad
 for idx, row in df_ciudades.iterrows():
     ciudad = row['Ciudad']
+    query = f"travel {ciudad}"
+    print(f"Buscando Reddit posts para: {query}")
 
     try:
-        print(f"Buscando tendencias para {ciudad}...")
-        pytrends.build_payload([f"Viajar a {ciudad}"], timeframe='today 12-m')  # Últimos 12 meses
-        interest = pytrends.interest_over_time()
-        if not interest.empty:
-            promedio = interest.mean().values[0]
-            popularidad.append(promedio)
-        else:
-            popularidad.append(0)
+        count = sum(1 for _ in reddit.subreddit("all").search(query, limit=100, sort='new'))
+        popularidad_reddit.append(count)
     except Exception as e:
-        print(f"Error para {ciudad}: {str(e)}")
-        popularidad.append(None)
+        print(f"Error en {ciudad}: {str(e)}")
+        popularidad_reddit.append(None)
 
-    sleep(2)  # 🔥 Dormir 2 segundos para no ser bloqueado
+    sleep(2)
 
-# Agregar la columna
-df_ciudades['popularidad_trends'] = popularidad
+# Añadir columna y guardar
+df_ciudades["popularidad_reddit"] = popularidad_reddit
+df_ciudades.to_csv("../Predicccion_agencia_de_viajes_proyecto/data/processed/ciudades_con_reddit.csv", index=False)
 
-# Guardar
-df_ciudades.to_csv("../Modelo_recomendaci-n_Agencia_de_viajes/data/processed/ciudades_con_tendencias.csv", index=False)
-
-print("¡Tendencias añadidas correctamente!")
+print("¡Popularidad Reddit añadida!")
