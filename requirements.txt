@@ -16,3 +16,8 @@ xgboost
 geopy
 timezonefinder
 pytrends
+praw
+beautifulsoup4
+selenium
+webdriver-manager
+selenium-wire

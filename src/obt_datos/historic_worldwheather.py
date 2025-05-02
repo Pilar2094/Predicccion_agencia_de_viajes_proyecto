@@ -22,19 +22,17 @@ for idx, row in df_ciudades.iterrows():
 
     print(f"Procesando: {ciudad}")
 
-    # Obtener datos de ubicación (país, región, zona horaria, población)
     try:
         location = geolocator.reverse((latitud, longitud), language='es', timeout=10)
         if location:
             address = location.raw.get('address', {})
-            pais = address.get('country', 'Desconocido')
-            region = address.get('state', 'Desconocido')
+
 
         else:
-            pais = region = zona_horaria = poblacion = 'Desconocido'
+            pais = region = 'Desconocido'
     except Exception as e:
         print(f"Error al obtener datos de ubicación para {ciudad}: {str(e)}")
-        pais = region = zona_horaria = poblacion = 'Desconocido'
+        pais = region = 'Desconocido'
 
     # Construir la URL de la API de Open-Meteo
     url = (
@@ -60,10 +58,6 @@ for idx, row in df_ciudades.iterrows():
                     'Ciudad': ciudad,
                     'Latitud': latitud,
                     'Longitud': longitud,
-                    'Pais': pais,
-                    'Region': region,
-                    'Zona_Horaria': zona_horaria,
-                    'Poblacion': poblacion,
                     'Fecha': fechas[i],
                     'Temp_Max': temp_max[i],
                     'Temp_Min': temp_min[i],
@@ -74,7 +68,7 @@ for idx, row in df_ciudades.iterrows():
     except Exception as e:
         print(f"Error para {ciudad}: {str(e)}")
 
-    sleep(1)  # Dormir 1 segundo entre requests
+    sleep(10)  # Dormir 1 segundo entre requests
 
 # Crear DataFrame final
 df_clima = pd.DataFrame(datos_clima)
