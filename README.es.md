@@ -2,7 +2,7 @@
 
 En el competitivo sector del turismo, comprender y anticiparse a las necesidades de los clientes es clave para mejorar la experiencia del usuario, optimizar las campañas de marketing y aumentar la conversión de ventas. Este proyecto tiene como objetivo construir un modelo de predicción que permita a una agencia de viajes tomar decisiones más informadas a partir de los datos históricos de sus clientes.
 
-### 🎯 Objetivo del proyecto
+### 🎯 Objetivo del proyecto:
 
 El objetivo principal es desarrollar un modelo de machine learning capaz de **predecir si un cliente completará una reserva de viaje** basándose en variables como:
 
