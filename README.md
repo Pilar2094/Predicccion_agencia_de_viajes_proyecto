@@ -2,7 +2,7 @@
 
 In the competitive travel industry, understanding and anticipating customer needs is key to improving user experience, optimizing marketing campaigns, and increasing booking conversion rates. This project aims to build a prediction model that enables a travel agency to make more informed decisions based on historical customer data.
 
-### 🎯 Project Objective
+### 🎯 Project Objective:
 
 The main goal is to develop a machine learning model capable of **predicting whether a customer will complete a travel booking** based on variables such as:
 
