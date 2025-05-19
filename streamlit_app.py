@@ -68,7 +68,7 @@ st.sidebar.markdown(
 
 # ======== TÍTULO PRINCIPAL ========
 st.markdown("""
-    <div style='background-color: #a9ea63; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;'>
+    <div style='background-color: #b8f3f0; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;'>
         <h1 style='text-align: left;'>🌍 Encuentra tu Próximo Destino Ideal</h1>
         <p style='font-size: 1.1rem;'>
             Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.<br>
