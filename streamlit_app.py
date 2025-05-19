@@ -21,7 +21,7 @@ st.markdown("""
             max-width: 100%;
         }
         .full-width-box {
-            background-color: #b8f3f0; /* Fondo suave basado en tu logo */
+            background-color: #7eb88f; /* Fondo suave basado en tu logo */
             padding: 2rem 3rem;
             border-radius: 12px;
             margin-bottom: 2rem;
