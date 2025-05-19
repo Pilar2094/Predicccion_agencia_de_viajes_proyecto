@@ -9,7 +9,7 @@ from PIL import Image
 
 # ======== CONFIGURACIÓN GENERAL ========
 st.set_page_config(
-    page_title="GoWhim – Tu Destino Ideal",
+    page_title="Destino Ideal",
     layout="wide",
     page_icon="🌍",
     initial_sidebar_state="expanded"
@@ -31,26 +31,44 @@ model, le, columnas_modelo, full_df, id_to_ciudad = cargar_datos()
 
 # ======== LOGO CENTRADO EN SIDEBAR Y CSS PARA ESTILOS ========
 logo_path = "data/Img/LOGO-.png"
-try:
-    with open(logo_path, "rb") as image_file:
-        logo_base64 = base64.b64encode(image_file.read()).decode()
-    st.sidebar.markdown(
-        f'''
-        <div style='text-align: center; margin-bottom: 2rem;'>
-            <img src="data:image/png;base64,{logo_base64}" width="280"/>
-        </div>
-        ''',
-        unsafe_allow_html=True
-    )
-except FileNotFoundError:
-    st.sidebar.error("❌ Logo no encontrado en la ruta: data/Img/LOGO-.png")
+with open(logo_path, "rb") as image_file:
+    logo_base64 = base64.b64encode(image_file.read()).decode()
 
-# ======== TÍTULO PRINCIPAL Y INTRO ========
-st.title("🌍 Encuentra tu Próximo Destino Ideal")
 st.markdown("""
-Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto. 
-Haz clic en "Recomendáme Destinos" o prueba el modo sorpresa para dejarte llevar por el espíritu aventurero.
-""")
+    <style>
+        [data-testid="collapsedControl"] {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        section[data-testid="stSidebar"] {
+            min-width: 400px !important;
+            width: 400px !important;
+            max-width: 400px !important;
+        }
+        .block-container {
+            padding-top: 2rem !important;
+        }
+        .card {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+st.sidebar.markdown(
+    f"""
+    <div style='text-align: center; margin-bottom: 2rem;'>
+        <img src="data:image/png;base64,{logo_base64}" width="280"/>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# ======== TÍTULO PRINCIPAL ========
+st.title("🌍 Encuentra tu Próximo Destino Ideal")
+st.write("Explora, sueña y planea tu próxima aventura con nuestras recomendaciones personalizadas.")
 
 # ======== ESTADOS DE SESIÓN ========
 if "n_destinos" not in st.session_state:
@@ -72,20 +90,6 @@ distancia = st.sidebar.slider("📍 Distancia al Centro (km)", 0, 20, 2)
 
 # ======== BOTÓN DE PREDICCIÓN ========
 if st.sidebar.button("🔎 Recomendáme Destinos"):
-    st.session_state.predicted = True
-    st.session_state.n_destinos = 5
-
-# ======== MODO AVENTURA ALEATORIA ========
-if st.sidebar.button("🎲 Modo Aventura Aleatoria"):
-    perfil = np.random.choice(full_df["perfil_viajero"].dropna().unique())
-    entorno = np.random.choice(full_df["entornos"].dropna().unique())
-    clasificacion = np.random.choice(full_df["clasificacion_destino"].dropna().unique())
-    temporada = np.random.choice(full_df["temporada"].dropna().unique())
-    clase = np.random.choice(full_df["class"].dropna().unique())
-    origen = np.random.choice(full_df["origin_city"].dropna().unique())
-    precio_x = np.random.randint(100, 900)
-    precio_y = np.random.randint(50, 400)
-    distancia = np.random.randint(0, 15)
     st.session_state.predicted = True
     st.session_state.n_destinos = 5
 
@@ -153,10 +157,6 @@ if st.session_state.predicted:
     mostradas = 0
     sin_eventos_mostrado = False
 
-    ciudades = []
-    latitudes = []
-    longitudes = []
-
     for idx in top_indices:
         if mostradas == st.session_state.n_destinos:
             break
@@ -176,9 +176,6 @@ if st.session_state.predicted:
             continue
 
         mostradas += 1
-
-        ciudades.append({"ciudad": ciudad, "lat": full_df[full_df["ciudad"] == ciudad_raw]["latitud"].iloc[0],
-                         "lon": full_df[full_df["ciudad"] == ciudad_raw]["longitud"].iloc[0]})
 
         with st.expander(f"🏩 {ciudad} — Recomendación #{mostradas}", expanded=True):
             st.markdown("<div class='card'>", unsafe_allow_html=True)
@@ -233,21 +230,15 @@ if st.session_state.predicted:
 
             st.markdown("</div>", unsafe_allow_html=True)
 
-    if ciudades:
-        st.subheader("🗺️ Mapa de Ciudades Recomendadas")
-        mapa_df = pd.DataFrame(ciudades)
-        st.map(mapa_df.rename(columns={"lat": "latitude", "lon": "longitude"}))
-
     if mostradas == 0:
         st.warning("⚠️ No se encontraron ciudades con información suficiente.")
 
-    col_btn1, col_btn2 = st.columns(2)
-    with col_btn1:
-        if mostradas < len(top_indices) and st.button("➕ Ver más destinos"):
+    if mostradas < len(top_indices):
+        if st.button("➕ Ver más destinos"):
             st.session_state.n_destinos += 3
             st.rerun()
-    with col_btn2:
-        if st.button("🔄 Reiniciar búsqueda"):
-            st.session_state.predicted = False
-            st.session_state.n_destinos = 5
-            st.rerun()
+
+    if st.button("🔄 Reiniciar búsqueda"):
+        st.session_state.predicted = False
+        st.session_state.n_destinos = 5
+        st.rerun()
