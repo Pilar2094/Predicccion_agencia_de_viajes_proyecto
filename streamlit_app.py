@@ -66,7 +66,7 @@ clase = st.sidebar.selectbox("💺 Clase del Vuelo", sorted(full_df["class"].dro
 origen = st.sidebar.selectbox("🛫 Ciudad de Origen", sorted(full_df["origin_city"].dropna().unique()))
 precio_x = st.sidebar.slider("💸 Precio Estimado Vuelo (€)", 50, 1000, 150)
 precio_y = st.sidebar.slider("🏨 Precio Estimado Hotel (€)", 20, 500, 100)
-distancia = st.sidebar.slider("📍 Distancia al Centro (km)", 0, 20, 2)", 0, 20, 2)
+distancia = st.sidebar.slider("📍 Distancia al Centro (km)", 0, 20, 2)
 
 # ======== ESTADOS DE SESIÓN ========
 if "n_destinos" not in st.session_state:
