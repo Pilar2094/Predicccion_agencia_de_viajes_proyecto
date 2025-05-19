@@ -177,9 +177,9 @@ if st.session_state.predicted:
 
         mostradas += 1
 
-        with st.expander(f"🏩 {ciudad} — Recomendación #{mostradas}", expanded=True):
+        with st.expander(f"🌏 {ciudad} — Recomendación #{mostradas}", expanded=True):
             st.markdown("<div class='card'>", unsafe_allow_html=True)
-            st.markdown(f"<h2>🏩 {ciudad}</h2>", unsafe_allow_html=True)
+            st.markdown(f"<h2>🧳 {ciudad}</h2>", unsafe_allow_html=True)
             st.markdown("---")
 
             st.markdown("### ☁️ Clima Estimado")
