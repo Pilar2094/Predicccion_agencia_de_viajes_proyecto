@@ -67,12 +67,15 @@ st.sidebar.markdown(
 )
 
 # ======== TÍTULO PRINCIPAL ========
-st.title("🌍 Encuentra tu Próximo Destino Ideal")
-
 st.markdown("""
-Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.  
-Haz clic en **Recomendáme Destinos** para dejarte llevar por el espíritu aventurero.
-""")
+    <div style='background-color: #FFECD6; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;'>
+        <h1 style='text-align: left;'>🌍 Encuentra tu Próximo Destino Ideal</h1>
+        <p style='font-size: 1.1rem;'>
+            Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.<br>
+            Haz clic en <strong>Recomiéndame Destinos</strong> para dejarte llevar por el espíritu aventurero.
+        </p>
+    </div>
+""", unsafe_allow_html=True)
 
 # ======== ESTADOS DE SESIÓN ========
 if "n_destinos" not in st.session_state:
