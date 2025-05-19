@@ -67,7 +67,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ======== LOGO EN SIDEBAR ========
-logo_path = os.path.join("data", "Img", "LOGO-.png")
+logo_path = os.path.join("data", "Img", "Logo-GoWhim.png")
 with open(logo_path, "rb") as image_file:
     logo_base64 = base64.b64encode(image_file.read()).decode()
 
