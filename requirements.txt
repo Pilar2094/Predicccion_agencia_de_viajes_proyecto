@@ -25,3 +25,4 @@ dask
 streamlit
 openpyxl
 joblib
+streamlit-folium
