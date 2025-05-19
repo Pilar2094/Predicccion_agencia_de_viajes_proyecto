@@ -233,12 +233,16 @@ if st.session_state.predicted:
     if mostradas == 0:
         st.warning("⚠️ No se encontraron ciudades con información suficiente.")
 
-    if mostradas < len(top_indices):
-        if st.button("➕ Ver más destinos"):
-            st.session_state.n_destinos += 3
-            st.rerun()
+col1, col2 = st.columns(2)
 
-    if st.button("🔄 Reiniciar búsqueda"):
+with col1:
+    if mostradas < len(top_indices):
+        if st.button("➕ Ver más destinos", key="ver_mas"):
+            st.session_state.n_destinos += 3
+            st.experimental_rerun()
+
+with col2:
+    if st.button("🔄 Reiniciar búsqueda", key="reiniciar"):
         st.session_state.predicted = False
         st.session_state.n_destinos = 5
-        st.rerun()
+        st.experimental_rerun()
