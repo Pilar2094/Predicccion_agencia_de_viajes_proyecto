@@ -30,7 +30,7 @@ def cargar_datos():
 model, le, columnas_modelo, full_df, id_to_ciudad = cargar_datos()
 
 # ======== LOGO CENTRADO EN SIDEBAR Y CSS PARA ESTILOS ========
-logo_path = "data/Img/LOGO-.png"
+logo_path = "data/Img/Logo-GoWhim.png"
 with open(logo_path, "rb") as image_file:
     logo_base64 = base64.b64encode(image_file.read()).decode()
 
