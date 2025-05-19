@@ -9,7 +9,7 @@ from PIL import Image
 
 # ======== CONFIGURACIÓN GENERAL ========
 st.set_page_config(
-    page_title="GoWhim - Tu Destino Ideal",
+    page_title="GoWhim - Tu Destino Ideal-prueba",
     layout="wide",
     page_icon="✈️",
     initial_sidebar_state="expanded"
