@@ -2,6 +2,10 @@
 
 In the competitive tourism industry, understanding and anticipating customer needs is key to improving user experience, optimizing marketing campaigns, and increasing sales conversion. This project aims to build a web-based tool for travel agencies that recommends personalized destinations using machine learning with an XGBoost model and an interactive form.
 
+## Access to the recommender application (GoWhim)
+
+https://predicccion-agencia-de-viajes-gowhim.streamlit.app/
+
 ### 🎯 Project Objective
 
 The main goal is to develop a machine learning model capable of **predicting whether a customer will complete a travel booking**, based on variables such as:
