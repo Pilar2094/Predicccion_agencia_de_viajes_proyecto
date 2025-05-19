@@ -142,8 +142,9 @@ def get_clima_estimado(ciudad, temporada):
 
 def get_eventos(ciudad, temporada):
     eventos = full_df[(full_df["ciudad"] == ciudad) & (full_df["temporada"] == temporada)]
-    eventos = eventos.dropna(subset=["evento_nombre", "evento_categoria", "evento_desc", "fecha"]).drop_duplicates()
-    eventos = eventos[eventos["evento_nombre"] != "sin_evento"].head(3)
+    eventos = eventos.dropna(subset=["evento_nombre", "evento_categoria", "evento_desc", "fecha"])
+    eventos = eventos[eventos["evento_nombre"] != "sin_evento"]
+    eventos = eventos.drop_duplicates(subset=["evento_nombre", "evento_categoria", "fecha"]).head(3)
     return eventos.to_dict("records") if not eventos.empty else None
 
 def get_precio_vuelo(origen, destino, clase):
