@@ -47,9 +47,10 @@ except FileNotFoundError:
 
 # ======== TÍTULO PRINCIPAL Y INTRO ========
 st.title("🌍 Encuentra tu Próximo Destino Ideal")
+
 st.markdown("""
-Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto. 
-Haz clic en "Recomendáme Destinos" o prueba el modo sorpresa para dejarte llevar por el espíritu aventurero.
+Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.  
+Haz clic en **Recomendáme Destinos** o prueba el **modo sorpresa** para dejarte llevar por el espíritu aventurero.
 """)
 
 # ======== ESTADOS DE SESIÓN ========
@@ -70,12 +71,10 @@ precio_x = st.sidebar.slider("💸 Precio Estimado Vuelo (€)", 50, 1000, 150)
 precio_y = st.sidebar.slider("🏨 Precio Estimado Hotel (€)", 20, 500, 100)
 distancia = st.sidebar.slider("📍 Distancia al Centro (km)", 0, 20, 2)
 
-# ======== BOTÓN DE PREDICCIÓN ========
 if st.sidebar.button("🔎 Recomendáme Destinos"):
     st.session_state.predicted = True
     st.session_state.n_destinos = 5
 
-# ======== MODO AVENTURA ALEATORIA ========
 if st.sidebar.button("🎲 Modo Aventura Aleatoria"):
     perfil = np.random.choice(full_df["perfil_viajero"].dropna().unique())
     entorno = np.random.choice(full_df["entornos"].dropna().unique())
@@ -154,8 +153,6 @@ if st.session_state.predicted:
     sin_eventos_mostrado = False
 
     ciudades = []
-    latitudes = []
-    longitudes = []
 
     for idx in top_indices:
         if mostradas == st.session_state.n_destinos:
@@ -177,30 +174,22 @@ if st.session_state.predicted:
 
         mostradas += 1
 
-        ciudades.append({"ciudad": ciudad, "lat": full_df[full_df["ciudad"] == ciudad_raw]["latitud"].iloc[0],
-                         "lon": full_df[full_df["ciudad"] == ciudad_raw]["longitud"].iloc[0]})
+        if "latitud" in full_df.columns and "longitud" in full_df.columns:
+            coord = full_df[full_df["ciudad"] == ciudad_raw][["latitud", "longitud"]].dropna().head(1)
+            if not coord.empty:
+                ciudades.append({"city": ciudad, "latitude": coord.latitud.values[0], "longitude": coord.longitud.values[0]})
 
         with st.expander(f"🏩 {ciudad} — Recomendación #{mostradas}", expanded=True):
-            st.markdown("<div class='card'>", unsafe_allow_html=True)
-            st.markdown(f"<h2>🏩 {ciudad}</h2>", unsafe_allow_html=True)
-            st.markdown("---")
-
             st.markdown("### ☁️ Clima Estimado")
-            st.markdown(
-                f"""
-                🔶 **Descripción:** {clima.get('desc_actual', 'N/A')}  
-                🌡️ **Máx:** {clima.get('temp_max', 'N/A')} °C — 🌡️ **Mín:** {clima.get('temp_min', 'N/A')} °C  
-                ☔️ **Precipitación:** {clima.get('precipitacion', 'N/A')} mm  
-                💧 **Humedad:** {clima.get('humedad_actual', 'N/A')}%
-                """
-            )
+            st.markdown(f"🔶 **Descripción:** {clima.get('desc_actual', 'N/A')}  ")
+            st.markdown(f"🌡️ **Máx:** {clima.get('temp_max', 'N/A')} °C — 🌡️ **Mín:** {clima.get('temp_min', 'N/A')} °C  ")
+            st.markdown(f"☔️ **Precipitación:** {clima.get('precipitacion', 'N/A')} mm  ")
+            st.markdown(f"💧 **Humedad:** {clima.get('humedad_actual', 'N/A')}%")
 
             st.markdown("### 🎫 Eventos")
             if eventos:
                 for e in eventos:
-                    st.markdown(
-                        f"- 🗓️ **{e['evento_nombre']}** ({e['evento_categoria']}) — `{e['fecha']}`"
-                    )
+                    st.markdown(f"- 🗓️ **{e['evento_nombre']}** ({e['evento_categoria']}) — `{e['fecha']}`")
             else:
                 sin_eventos_mostrado = True
                 st.info("ℹ️ No hay eventos disponibles para esta ciudad.")
@@ -208,46 +197,36 @@ if st.session_state.predicted:
             col1, col2 = st.columns(2)
             with col1:
                 st.markdown("### ✈️ Vuelo")
-                st.markdown(
-                    f"""
-                    💶 **Precio:** {vuelo.get('flight_price', 'N/A')} €  
-                    ⏱️ **Duración:** {vuelo.get('flight_duration_hr', 'N/A')} h  
-                    🛫 **Aerolínea:** {vuelo.get('airline', 'N/A')}  
-                    🧱 **Clase:** {vuelo.get('class', 'N/A')}  
-                    🔁 **Escalas:** {vuelo.get('stops', 'N/A')}
-                    """
-                )
+                st.markdown(f"💶 **Precio:** {vuelo.get('flight_price', 'N/A')} €")
+                st.markdown(f"⏱️ **Duración:** {vuelo.get('flight_duration_hr', 'N/A')} h")
+                st.markdown(f"🛫 **Aerolínea:** {vuelo.get('airline', 'N/A')}")
+                st.markdown(f"🧱 **Clase:** {vuelo.get('class', 'N/A')}")
+                st.markdown(f"🔁 **Escalas:** {vuelo.get('stops', 'N/A')}")
 
             with col2:
                 st.markdown("### 🏨 Hotel")
-                st.markdown(
-                    f"""
-                    🏠 **Nombre:** {hotel.get('hotel_name', 'N/A')}  
-                    💰 **Precio por noche:** {hotel.get('estimated_price_eur_y', 'N/A')} €  
-                    🏷️ **Tipo:** {hotel.get('hotel_type', 'N/A')}  
-                    🏅 **Categoría:** {hotel.get('category', 'N/A')}  
-                    📝 **Descripción:** {hotel.get('hotel_type_1', 'N/A')}  
-                    📍 **Distancia al centro:** {hotel.get('distance_to_city_center_km', 'N/A')} km
-                    """
-                )
-
-            st.markdown("</div>", unsafe_allow_html=True)
+                st.markdown(f"🏠 **Nombre:** {hotel.get('hotel_name', 'N/A')}")
+                st.markdown(f"💰 **Precio por noche:** {hotel.get('estimated_price_eur_y', 'N/A')} €")
+                st.markdown(f"🏷️ **Tipo:** {hotel.get('hotel_type', 'N/A')}")
+                st.markdown(f"🏅 **Categoría:** {hotel.get('category', 'N/A')}")
+                st.markdown(f"📝 **Descripción:** {hotel.get('hotel_type_1', 'N/A')}")
+                st.markdown(f"📍 **Distancia al centro:** {hotel.get('distance_to_city_center_km', 'N/A')} km")
 
     if ciudades:
         st.subheader("🗺️ Mapa de Ciudades Recomendadas")
-        mapa_df = pd.DataFrame(ciudades)
-        st.map(mapa_df.rename(columns={"lat": "latitude", "lon": "longitude"}))
+        st.map(pd.DataFrame(ciudades))
 
     if mostradas == 0:
         st.warning("⚠️ No se encontraron ciudades con información suficiente.")
 
-    col_btn1, col_btn2 = st.columns(2)
-    with col_btn1:
+    col1, col2 = st.columns(2)
+    with col1:
         if mostradas < len(top_indices) and st.button("➕ Ver más destinos"):
             st.session_state.n_destinos += 3
             st.rerun()
-    with col_btn2:
+    with col2:
         if st.button("🔄 Reiniciar búsqueda"):
             st.session_state.predicted = False
             st.session_state.n_destinos = 5
             st.rerun()
+
