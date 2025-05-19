@@ -71,9 +71,9 @@ st.markdown(
     """
     <style>
         .intro-box {
-            background-color: #FFF4E6;
+            background-color: #b8f3f0;
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 30px;
             margin-bottom: 2rem;
         }
         .intro-box h1 {
@@ -83,7 +83,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 st.markdown(
     """
     <div class="intro-box">
