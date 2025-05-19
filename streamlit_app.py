@@ -146,9 +146,14 @@ def get_eventos(ciudad, temporada):
     eventos = eventos[eventos["evento_nombre"] != "sin_evento"].head(3)
     return eventos.to_dict("records") if not eventos.empty else None
 
-def get_precio_vuelo(origen, destino):
-    vuelos = full_df[(full_df["origin_city"] == origen) & (full_df["ciudad"] == destino)]
-    if vuelos.empty: return None
+def get_precio_vuelo(origen, destino, clase):
+    vuelos = full_df[
+        (full_df["origin_city"] == origen) &
+        (full_df["ciudad"] == destino) &
+        (full_df["class"] == clase)
+    ]
+    if vuelos.empty:
+        return None
     info = vuelos[["flight_price", "flight_duration_hr"]].mean().round(1).to_dict()
     info["airline"] = vuelos["airline"].mode()[0] if "airline" in vuelos else "N/A"
     info["stops"] = vuelos["stops"].mode()[0] if "stops" in vuelos else "N/A"
@@ -193,7 +198,7 @@ if st.session_state.predicted:
 
         clima = get_clima_estimado(ciudad_raw, temporada)
         eventos = get_eventos(ciudad_raw, temporada)
-        vuelo = get_precio_vuelo(origen, ciudad_raw)
+        vuelo = get_precio_vuelo(origen, ciudad_raw, clase)
         hotel = get_hotel(ciudad_raw)
 
         if None in (clima, vuelo, hotel):
