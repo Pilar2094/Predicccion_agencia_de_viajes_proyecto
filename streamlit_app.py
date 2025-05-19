@@ -16,18 +16,51 @@ st.set_page_config(
 )
 st.markdown("""
     <style>
-        .block-container {
-            padding-top: 2rem;
-            max-width: 100%;
+        /* Fondo general de toda la app */
+        body, .stApp {
+            background-color: #fff4e6 !important;  /* Naranja claro */
         }
-        .full-width-box {
-            background-color: #7eb88f; /* Fondo suave basado en tu logo */
-            padding: 2rem 3rem;
-            border-radius: 12px;
+
+        /* Fondo de la sección central (contenido principal) */
+        .block-container {
+            background-color: #ffffff;
+            padding: 3rem 2rem 2rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Encabezado con fondo más claro del logo */
+        .intro-box {
+            background-color: #d9f5ee;
+            padding: 1.5rem;
+            border-radius: 15px;
             margin-bottom: 2rem;
         }
-        .full-width-box h1 {
-            margin-bottom: 0.5rem;
+
+        /* Personalización de títulos */
+        h1, h2, h3 {
+            color: #344e41; /* Verde oscuro del logo */
+        }
+
+        /* Personalización de botones */
+        button[kind="primary"] {
+            background-color: #ff9f1c;
+            color: white;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button[kind="primary"]:hover {
+            background-color: #ff922b;
+        }
+
+        /* Contenedor de recomendaciones */
+        .card {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
         }
     </style>
 """, unsafe_allow_html=True)
