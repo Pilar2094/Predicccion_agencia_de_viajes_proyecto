@@ -68,7 +68,11 @@ st.sidebar.markdown(
 
 # ======== TÍTULO PRINCIPAL ========
 st.title("🌍 Encuentra tu Próximo Destino Ideal")
-st.write("Explora, sueña y planea tu próxima aventura con nuestras recomendaciones personalizadas.")
+
+st.markdown("""
+Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.  
+Haz clic en **Recomendáme Destinos** o prueba el **modo sorpresa** para dejarte llevar por el espíritu aventurero.
+""")
 
 # ======== ESTADOS DE SESIÓN ========
 if "n_destinos" not in st.session_state:
