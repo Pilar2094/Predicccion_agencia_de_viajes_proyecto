@@ -2,6 +2,9 @@
 
 En el competitivo sector del turismo, comprender y anticiparse a las necesidades de los clientes es clave para mejorar la experiencia del usuario, optimizar las campañas de marketing y aumentar la conversión de ventas. Este proyecto tiene como objetivo construir una herramienta web para agencias de viajes que recomienda destinos personalizados utilizando aprendizaje automático con un modelo XGBoost y un formulario interactivo.
 
+## Acceso Aplicación recomendador (GoWhim)
+
+https://predicccion-agencia-de-viajes-gowhim.streamlit.app/
 
 ### 🎯 Objetivo del proyecto
 
