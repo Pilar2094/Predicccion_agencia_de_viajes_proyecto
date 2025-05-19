@@ -71,7 +71,7 @@ st.title("🌍 Encuentra tu Próximo Destino Ideal")
 
 st.markdown("""
 Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.  
-Haz clic en **Recomendáme Destinos** o prueba el **modo sorpresa** para dejarte llevar por el espíritu aventurero.
+Haz clic en **Recomendáme Destinos** para dejarte llevar por el espíritu aventurero.
 """)
 
 # ======== ESTADOS DE SESIÓN ========
