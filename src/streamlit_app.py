@@ -68,6 +68,17 @@ precio_x = st.sidebar.slider("💸 Precio Estimado Vuelo (€)", 50, 1000, 150)
 precio_y = st.sidebar.slider("🏨 Precio Estimado Hotel (€)", 20, 500, 100)
 distancia = st.sidebar.slider("📍 Distancia al Centro (km)", 0, 20, 2)
 
+# ======== ESTADOS DE SESIÓN ========
+if "n_destinos" not in st.session_state:
+    st.session_state.n_destinos = 5
+if "predicted" not in st.session_state:
+    st.session_state.predicted = False
+
+# ======== BOTÓN DE PREDICCIÓN ========
+if st.sidebar.button("🔎 Recomendáme Destinos"):
+    st.session_state.predicted = True
+    st.session_state.n_destinos = 5
+
 # ======== CARGA DE DATOS Y MODELOS ========
 @st.cache_data(show_spinner=False)
 def cargar_datos():
@@ -126,7 +137,7 @@ def get_hotel(ciudad):
     return hotel[["hotel_name", "estimated_price_eur_y", "hotel_type", "category", "hotel_type_1", "distance_to_city_center_km"]].to_dict("records")[0]
 
 # ======== PREDICCIÓN Y RECOMENDACIONES ========
-if st.sidebar.button("🔎 Recomendáme Destinos"):
+if st.session_state.predicted:
     input_dict = {
         "perfil_viajero_n": perfil,
         "entornos_n": entorno,
@@ -148,7 +159,7 @@ if st.sidebar.button("🔎 Recomendáme Destinos"):
     sin_eventos_mostrado = False
 
     for idx in top_indices:
-        if mostradas == 5:
+        if mostradas == st.session_state.n_destinos:
             break
 
         ciudad_id = model.classes_[idx]
@@ -222,3 +233,13 @@ if st.sidebar.button("🔎 Recomendáme Destinos"):
 
     if mostradas == 0:
         st.warning("⚠️ No se encontraron ciudades con información suficiente.")
+
+    if mostradas < len(top_indices):
+        if st.button("➕ Ver más destinos"):
+            st.session_state.n_destinos += 3
+            st.rerun()
+
+    if st.button("🔄 Reiniciar búsqueda"):
+        st.session_state.predicted = False
+        st.session_state.n_destinos = 5
+        st.rerun()
