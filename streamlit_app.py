@@ -15,6 +15,20 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# ======== CARGA DE DATOS Y MODELOS ========
+@st.cache_data(show_spinner=False)
+def cargar_datos():
+    model = joblib.load("models/model_completo.pkl")
+    le = joblib.load("models/label_encoder.pkl")
+    columnas = pd.read_csv("data/processed/x_train_columns.csv", header=None).squeeze().tolist()
+    full_df = pd.read_csv("data/processed/total_data_240k.csv")
+    with open("data/processed/Json/ciudad_transformation_rules.json") as f:
+        mapping = json.load(f)
+    id_to_ciudad = {str(v): k for k, v in mapping.items()}
+    return model, le, columnas, full_df, id_to_ciudad
+
+model, le, columnas_modelo, full_df, id_to_ciudad = cargar_datos()
+
 # ======== LOGO CENTRADO EN SIDEBAR Y CSS PARA ESTILOS ========
 logo_path = os.path.join("data", "Img", "LOGO-.png")
 with open(logo_path, "rb") as image_file:
@@ -56,6 +70,12 @@ st.sidebar.markdown(
 st.title("🌍 Encuentra tu Próximo Destino Ideal")
 st.write("Explora, sueña y planea tu próxima aventura con nuestras recomendaciones personalizadas.")
 
+# ======== ESTADOS DE SESIÓN ========
+if "n_destinos" not in st.session_state:
+    st.session_state.n_destinos = 5
+if "predicted" not in st.session_state:
+    st.session_state.predicted = False
+
 # ======== SIDEBAR: FILTROS DE BÚSQUEDA ========
 st.sidebar.header("🔍 Filtros de Búsqueda")
 perfil = st.sidebar.selectbox("🧳 Perfil de Viajero", sorted(full_df["perfil_viajero"].dropna().unique()))
@@ -68,30 +88,10 @@ precio_x = st.sidebar.slider("💸 Precio Estimado Vuelo (€)", 50, 1000, 150)
 precio_y = st.sidebar.slider("🏨 Precio Estimado Hotel (€)", 20, 500, 100)
 distancia = st.sidebar.slider("📍 Distancia al Centro (km)", 0, 20, 2)
 
-# ======== ESTADOS DE SESIÓN ========
-if "n_destinos" not in st.session_state:
-    st.session_state.n_destinos = 5
-if "predicted" not in st.session_state:
-    st.session_state.predicted = False
-
 # ======== BOTÓN DE PREDICCIÓN ========
 if st.sidebar.button("🔎 Recomendáme Destinos"):
     st.session_state.predicted = True
     st.session_state.n_destinos = 5
-
-# ======== CARGA DE DATOS Y MODELOS ========
-@st.cache_data(show_spinner=False)
-def cargar_datos():
-    model = joblib.load("models/model_completo.pkl")
-    le = joblib.load("models/label_encoder.pkl")
-    columnas = pd.read_csv("data/processed/x_train_columns.csv", header=None).squeeze().tolist()
-    full_df = pd.read_csv("data/processed/total_data_240k.csv")
-    with open("data/processed/Json/ciudad_transformation_rules.json") as f:
-        mapping = json.load(f)
-    id_to_ciudad = {str(v): k for k, v in mapping.items()}
-    return model, le, columnas, full_df, id_to_ciudad
-
-model, le, columnas_modelo, full_df, id_to_ciudad = cargar_datos()
 
 # ======== FUNCIONES AUXILIARES ========
 def construir_input_usuario(valores_dict, columnas_modelo):
