@@ -9,9 +9,9 @@ from PIL import Image
 
 # ======== CONFIGURACIÓN GENERAL ========
 st.set_page_config(
-    page_title="Destino Ideal",
+    page_title="GoWhim - Tu Destino Ideal",
     layout="wide",
-    page_icon="🌍",
+    page_icon="✈️",
     initial_sidebar_state="expanded"
 )
 
@@ -179,7 +179,7 @@ if st.session_state.predicted:
 
         with st.expander(f"🌏 {ciudad} — Recomendación #{mostradas}", expanded=True):
             st.markdown("<div class='card'>", unsafe_allow_html=True)
-            st.markdown(f"<h2>🧳🎉 {ciudad}</h2>", unsafe_allow_html=True)
+            st.markdown(f"<h2>🧳 {ciudad}</h2>", unsafe_allow_html=True)
             st.markdown("---")
 
             st.markdown("### ☁️ Clima Estimado")
