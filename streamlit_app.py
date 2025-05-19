@@ -14,6 +14,23 @@ st.set_page_config(
     page_icon="✈️",
     initial_sidebar_state="expanded"
 )
+st.markdown("""
+    <style>
+        .block-container {
+            padding-top: 2rem;
+            max-width: 100%;
+        }
+        .full-width-box {
+            background-color: #b8f3f0; /* Fondo suave basado en tu logo */
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .full-width-box h1 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # ======== CARGA DE DATOS Y MODELOS ========
 @st.cache_data(show_spinner=False)
@@ -67,32 +84,17 @@ st.sidebar.markdown(
 )
 
 # ======== TÍTULO PRINCIPAL ========
-st.markdown(
-    """
-    <style>
-        .intro-box {
-            background-color: #b8f3f0;
-            padding: 2rem;
-            border-radius: 30px;
-            margin-bottom: 2rem;
-        }
-        .intro-box h1 {
-            margin-bottom: 0.5rem;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-st.markdown(
-    """
-    <div class="intro-box">
-        <h1>🌍 Encuentra tu Próximo Destino Ideal</h1>
-        <p>Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.<br>
-        Haz clic en <strong>Recomiéndame Destinos</strong> para dejarte llevar por el espíritu aventurero.</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+with st.container():
+    st.markdown(
+        """
+        <div class="full-width-box">
+            <h1>🌍 Encuentra tu Próximo Destino Ideal</h1>
+            <p>Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.<br>
+            Haz clic en <strong>Recomiéndame Destinos</strong> para dejarte llevar por el espíritu aventurero.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # ======== ESTADOS DE SESIÓN ========
 if "n_destinos" not in st.session_state:
