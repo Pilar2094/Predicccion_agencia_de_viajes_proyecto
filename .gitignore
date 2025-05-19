@@ -13,3 +13,4 @@ dataset_completo.csv
 hotels_with_distance_dataset.csv
 merged_flight_dataset.csv
 total_data_240k.csv.gz
+.env
