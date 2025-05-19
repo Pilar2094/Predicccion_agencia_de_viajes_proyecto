@@ -67,15 +67,33 @@ st.sidebar.markdown(
 )
 
 # ======== TÍTULO PRINCIPAL ========
-st.markdown("""
-    <div style='background-color: #b8f3f0; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;'>
-        <h1 style='text-align: left;'>🌍 Encuentra tu Próximo Destino Ideal</h1>
-        <p style='font-size: 1.1rem;'>
-            Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.<br>
-            Haz clic en <strong>Recomiéndame Destinos</strong> para dejarte llevar por el espíritu aventurero.
-        </p>
+st.markdown(
+    """
+    <style>
+        .intro-box {
+            background-color: #FFF4E6;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .intro-box h1 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div class="intro-box">
+        <h1>🌍 Encuentra tu Próximo Destino Ideal</h1>
+        <p>Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.<br>
+        Haz clic en <strong>Recomiéndame Destinos</strong> para dejarte llevar por el espíritu aventurero.</p>
     </div>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
 # ======== ESTADOS DE SESIÓN ========
 if "n_destinos" not in st.session_state:
