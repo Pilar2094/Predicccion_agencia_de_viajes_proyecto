@@ -7,42 +7,48 @@ import os
 import base64
 from PIL import Image
 
-# ======== CONFIGURACIÓN GENERAL ========
+# ======== CONFIGURACION GENERAL ========
 st.set_page_config(
-    page_title="GoWhim - Tu Destino Ideal",
+    page_title="GoWhim",
     layout="wide",
-    page_icon="✈️",
+    page_icon="🌍",
     initial_sidebar_state="expanded"
 )
+
+# ======== CSS DE PERSONALIZACION ========
 st.markdown("""
     <style>
-        /* Fondo general de toda la app */
+        /* Ocultar flecha del sidebar */
+        [data-testid="collapsedControl"] {
+            display: none !important;
+        }
+
+        /* Fondo general */
         body, .stApp {
-            background-color: #fff4e6 !important;  /* Naranja claro */
+            background-color: #fff4e6 !important;
         }
 
-        /* Fondo de la sección central (contenido principal) */
-        .block-container {
-            background-color: #ffffff;
-            padding: 3rem 2rem 2rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-        }
-
-        /* Encabezado con fondo más claro del logo */
+        /* Fondo del bloque de introduccion */
         .intro-box {
             background-color: #d9f5ee;
+            padding: 2rem;
+            border-radius: 18px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .block-container {
+            padding-top: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
             padding: 1.5rem;
             border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             margin-bottom: 2rem;
         }
 
-        /* Personalización de títulos */
-        h1, h2, h3 {
-            color: #344e41; /* Verde oscuro del logo */
-        }
-
-        /* Personalización de botones */
         button[kind="primary"] {
             background-color: #ff9f1c;
             color: white;
@@ -51,22 +57,33 @@ st.markdown("""
         }
 
         button[kind="primary"]:hover {
-            background-color: #ff922b;
+            background-color: #ffa94d;
         }
 
-        /* Contenedor de recomendaciones */
-        .card {
-            background-color: #ffffff;
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
+        h1, h2 {
+            color: #344e41;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# ======== CARGA DE DATOS Y MODELOS ========
-@st.cache_data(show_spinner=False)
+# ======== LOGO EN SIDEBAR ========
+logo_path = os.path.join("data", "Img", "LOGO-.png")
+with open(logo_path, "rb") as image_file:
+    logo_base64 = base64.b64encode(image_file.read()).decode()
+
+st.sidebar.markdown(
+    f"""
+    <div style='text-align: center; margin-bottom: 2rem;'>
+        <img src="data:image/png;base64,{logo_base64}" width="240"/>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# ======== SIDEBAR: FILTROS ========
+st.sidebar.header("🔍 Filtros de Búsqueda")
+@st.cache_data
+
 def cargar_datos():
     model = joblib.load("models/model_completo.pkl")
     le = joblib.load("models/label_encoder.pkl")
@@ -79,55 +96,24 @@ def cargar_datos():
 
 model, le, columnas_modelo, full_df, id_to_ciudad = cargar_datos()
 
-# ======== LOGO CENTRADO EN SIDEBAR Y CSS PARA ESTILOS ========
-logo_path = "data/Img/Logo-GoWhim.png"
-with open(logo_path, "rb") as image_file:
-    logo_base64 = base64.b64encode(image_file.read()).decode()
+perfil = st.sidebar.selectbox("🧳 Perfil de Viajero", sorted(full_df["perfil_viajero"].dropna().unique()))
+entorno = st.sidebar.selectbox("🌄 Tipo de Entorno", sorted(full_df["entornos"].dropna().unique()))
+clasificacion = st.sidebar.selectbox("🎯 Tipo de Experiencia", sorted(full_df["clasificacion_destino"].dropna().unique()))
+temporada = st.sidebar.selectbox("📆 Temporada", sorted(full_df["temporada"].dropna().unique()))
+clase = st.sidebar.selectbox("💺 Clase del Vuelo", sorted(full_df["class"].dropna().unique()))
+origen = st.sidebar.selectbox("🛫 Ciudad de Origen", sorted(full_df["origin_city"].dropna().unique()))
+precio_x = st.sidebar.slider("💸 Precio Estimado Vuelo (€)", 50, 1000, 150)
+precio_y = st.sidebar.slider("🏨 Precio Estimado Hotel (€)", 20, 500, 100)
+distancia = st.sidebar.slider("📍 Distancia al Centro (km)", 0, 20, 2)
 
+# ======== ENCABEZADO CON FONDO VERDE CLARO ========
 st.markdown("""
-    <style>
-        [data-testid="collapsedControl"] {
-            display: none !important;
-            visibility: hidden !important;
-        }
-        section[data-testid="stSidebar"] {
-            min-width: 400px !important;
-            width: 400px !important;
-            max-width: 400px !important;
-        }
-        .block-container {
-            padding-top: 2rem !important;
-        }
-        .card {
-            background-color: transparent !important;
-            box-shadow: none !important;
-            padding: 0 !important;
-            border-radius: 0 !important;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
-st.sidebar.markdown(
-    f"""
-    <div style='text-align: center; margin-bottom: 2rem;'>
-        <img src="data:image/png;base64,{logo_base64}" width="280"/>
+    <div class="intro-box">
+        <h1>🌍 Encuentra tu Próximo Destino Ideal</h1>
+        <p>Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.<br>
+        Haz clic en <b>Recomiéndame Destinos</b> para dejarte llevar por el espíritu aventurero.</p>
     </div>
-    """,
-    unsafe_allow_html=True
-)
-
-# ======== TÍTULO PRINCIPAL ========
-with st.container():
-    st.markdown(
-        """
-        <div class="full-width-box">
-            <h1>🌍 Encuentra tu Próximo Destino Ideal</h1>
-            <p>Descubre lugares únicos recomendados para ti según tu perfil, temporada, preferencias de viaje y presupuesto.<br>
-            Haz clic en <strong>Recomiéndame Destinos</strong> para dejarte llevar por el espíritu aventurero.</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+""", unsafe_allow_html=True)
 
 # ======== ESTADOS DE SESIÓN ========
 if "n_destinos" not in st.session_state:
